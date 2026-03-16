@@ -145,6 +145,21 @@ return {
 		version = "1.*",
 		dependencies = { "L3MON4D3/LuaSnip" },
 		opts = {
+			completion = {
+				menu = {
+					border = "rounded",
+				},
+				documentation = {
+					window = {
+						border = "rounded",
+					},
+				},
+			},
+			signature = {
+				window = {
+					border = "rounded",
+				},
+			},
 			fuzzy = { implementation = "lua" },
 			snippets = { preset = "luasnip" },
 			sources = {

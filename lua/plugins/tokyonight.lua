@@ -22,6 +22,19 @@ return {
 				-- File
 				hl.NeoTreeNormal = { bg = "NONE" }
 				hl.NeoTreeNormalNC = { bg = "NONE" }
+
+				-- Buffer
+				--  hl.BufferCurrent = { bg = "NONE", bold = true }
+				--  hl.BufferCurrentSign = { bg = "NONE" }
+				--  hl.BufferCurrentMod = { bg = "NONE" }
+				--  hl.BufferInactive = { bg = "NONE", fg = c.dark5 }
+				--  hl.BufferInactiveSign = { bg = "NONE" }
+				--  hl.BufferInactiveMod = { bg = "NONE" }
+				hl.BufferVisible = { bg = "NONE" }
+				hl.BufferVisibleSign = { bg = "NONE" }
+				hl.BufferTabpages = { bg = "NONE" }
+				hl.BufferTabpageFill = { bg = "NONE" }
+				hl.BufferOffset = { bg = "NONE" }
 			end,
 		})
 		vim.cmd.colorscheme("tokyonight-moon")
