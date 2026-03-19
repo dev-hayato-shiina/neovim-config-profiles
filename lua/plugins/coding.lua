@@ -67,16 +67,16 @@ return {
 	},
 
 	-- スニペットエンジン: 展開・タブ移動・動的プレースホルダーを処理する
-	{
-		"L3MON4D3/LuaSnip",
-		dependencies = {
-			-- VSCode 形式のスニペットデータ集
-			"rafamadriz/friendly-snippets",
-		},
-		config = function()
-			require("luasnip.loaders.from_vscode").lazy_load()
-		end,
-	},
+	-- {
+	-- 	"L3MON4D3/LuaSnip",
+	-- 	dependencies = {
+	-- 		-- VSCode 形式のスニペットデータ集
+	-- 		"rafamadriz/friendly-snippets",
+	-- 	},
+	-- 	config = function()
+	-- 		require("luasnip.loaders.from_vscode").lazy_load()
+	-- 	end,
+	-- },
 
 	-- DAP エンジン: DAP プロトコルでデバッガーと通信する
 	{
@@ -139,38 +139,38 @@ return {
 	},
 
 	-- 補完UI: LSP・スニペット・パス・バッファ内単語を束ねてポップアップ表示する
-	{
-		"Saghen/blink.cmp",
-		lazy = false,
-		version = "1.*",
-		dependencies = { "L3MON4D3/LuaSnip" },
-		opts = {
-			completion = {
-				menu = {
-					border = "rounded",
-				},
-				documentation = {
-					window = {
-						border = "rounded",
-					},
-				},
-			},
-			signature = {
-				window = {
-					border = "rounded",
-				},
-			},
-			fuzzy = { implementation = "lua" },
-			snippets = { preset = "luasnip" },
-			sources = {
-				default = { "lsp", "path", "snippets", "buffer" },
-			},
-			keymap = {
-				preset = "default",
-				["<CR>"] = { "accept", "fallback" },
-			},
-		},
-	},
+	-- {
+	-- 	"Saghen/blink.cmp",
+	-- 	lazy = false,
+	-- 	version = "1.*",
+	-- 	dependencies = { "L3MON4D3/LuaSnip" },
+	-- 	opts = {
+	-- 		completion = {
+	-- 			menu = {
+	-- 				border = "rounded",
+	-- 			},
+	-- 			documentation = {
+	-- 				window = {
+	-- 					border = "rounded",
+	-- 				},
+	-- 			},
+	-- 		},
+	-- 		signature = {
+	-- 			window = {
+	-- 				border = "rounded",
+	-- 			},
+	-- 		},
+	-- 		fuzzy = { implementation = "lua" },
+	-- 		snippets = { preset = "luasnip" },
+	-- 		sources = {
+	-- 			default = { "lsp", "path", "snippets", "buffer" },
+	-- 		},
+	-- 		keymap = {
+	-- 			preset = "default",
+	-- 			["<CR>"] = { "accept", "fallback" },
+	-- 		},
+	-- 	},
+	-- },
 
 	-- 括弧・クォートを自動で閉じる
 	{
