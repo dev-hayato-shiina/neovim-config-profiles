@@ -8,12 +8,23 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   opts = {
+    window = {
+      width = 30,
+      auto_expand_width = false,
+    },
     filesystem = {
       filtered_items = {
-        visible = true,           -- 隠しファイルを非表示にせず、通常ファイルと区別して表示する
-        hide_dotfiles = false,    -- ドットファイル（.gitなど）を表示する
-        hide_gitignored = false,  -- .gitignore に記載されたファイルも表示する
+        visible = true,
+        hide_dotfiles = false,
+        hide_gitignored = false,
       },
+      cwd_target = {
+        sidebar = "window",
+      },
+      follow_current_file = {
+        enabled = true,
+      },
+      use_libuv_file_watcher = true,
     },
   },
 }

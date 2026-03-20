@@ -31,12 +31,12 @@ opt.winminwidth = 5 -- ウィンドウの最小幅
 opt.wrap = false -- 長い行の折り返しを無効にする
 opt.conceallevel = 2 -- Markdown の **bold** 等の修飾記号を非表示にする
 opt.fillchars = { -- 特殊文字の表示形式
-	foldopen = "",
-	foldclose = "",
-	fold = " ",
-	foldsep = " ",
-	diff = "╱",
-	eob = " ",
+  foldopen = "",
+  foldclose = "",
+  fold = " ",
+  foldsep = " ",
+  diff = "╱",
+  eob = " ",
 }
 
 -- ===== 動作 =====

@@ -4,6 +4,8 @@
 
 ```
 .
+├── README.md
+├── init.lua
 ├── laravel # Laravel専用
 │   ├── README.md
 │   ├── init.lua
@@ -17,9 +19,13 @@
 │       │   └── option.lua
 │       └── plugins
 │           ├── alpha-nvim.lua
-│           ├── barbar.lua
+│           ├── babel.lua
+│           ├── blamer.lua
+│           ├── bufferline.lua
 │           ├── coding.lua # Laravel専用にカスタマイズ
 │           ├── fcitx5.lua
+│           ├── fzf-lua.lua
+│           ├── git-messenger.lua
 │           ├── gitsigns.lua
 │           ├── hop.lua
 │           ├── indent-blankline.lua
@@ -31,37 +37,49 @@
 │           ├── neo-tree.lua
 │           ├── neoscroll.lua
 │           ├── noice.lua
-│           ├── smear-cursor.lua
-│           └── tokyonight.lua
-├── .gitignore
-├── README.md
-├── init.lua # デフォルト設定
+│           ├── onedark.lua
+│           ├── project.lua
+│           ├── trouble.lua
+│           ├── twilight.lua
+│           ├── vim-better-whitespace.lua
+│           ├── which-key.lua
+│           └── zenmode.lua
 ├── lazy-lock.json
-└── lua
-    ├── config
-    │   ├── autocmd.lua
-    │   ├── base.lua
-    │   ├── keymap.lua
-    │   ├── lazy.lua
-    │   └── option.lua
-    └── plugins
-        ├── alpha-nvim.lua
-        ├── barbar.lua
-        ├── coding.lua
-        ├── fcitx5.lua
-        ├── gitsigns.lua
-        ├── hop.lua
-        ├── indent-blankline.lua
-        ├── lazydocker.lua
-        ├── lazygit.lua
-        ├── lualine.lua
-        ├── markview.lua
-        ├── multicursor.lua
-        ├── neo-tree.lua
-        ├── neoscroll.lua
-        ├── noice.lua
-        ├── smear-cursor.lua
-        └── tokyonight.lua
+├── lua # デフォルト設定
+│   ├── config
+│   │   ├── autocmd.lua
+│   │   ├── base.lua
+│   │   ├── keymap.lua
+│   │   ├── lazy.lua
+│   │   └── option.lua
+│   └── plugins
+│       ├── alpha-nvim.lua
+│       ├── babel.lua
+│       ├── blamer.lua
+│       ├── bufferline.lua
+│       ├── coding.lua
+│       ├── fcitx5.lua
+│       ├── fzf-lua.lua
+│       ├── git-messenger.lua
+│       ├── gitsigns.lua
+│       ├── hop.lua
+│       ├── indent-blankline.lu
+│       ├── lazydocker.lua
+│       ├── lazygit.lua
+│       ├── lualine.lua
+│       ├── markview.lua
+│       ├── multicursor.lua
+│       ├── neo-tree.lua
+│       ├── neoscroll.lua
+│       ├── noice.lua
+│       ├── onedark.lua
+│       ├── project.lua
+│       ├── trouble.lua
+│       ├── twilight.lua
+│       ├── vim-better-whitespace.lua
+│       ├── which-key.lua
+│       └── zenmode.lua
+└── stylua.toml
 ```
 
 ## プロファイルの切り替え
