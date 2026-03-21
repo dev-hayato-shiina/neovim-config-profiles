@@ -1,12 +1,13 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
-  lazy = false,
+  event = "VeryLazy",
   branch = "v3.x",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     "nvim-tree/nvim-web-devicons",
   },
+  keys = { { "<leader>e", "<cmd>Neotree toggle<cr>" } },
   opts = {
     window = {
       width = 30,

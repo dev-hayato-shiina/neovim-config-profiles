@@ -1,5 +1,5 @@
 return {
-  "OXY2DEV/markview.nvim",
+  "folke/ts-comments.nvim",
   event = "VeryLazy",
   opts = {},
 }

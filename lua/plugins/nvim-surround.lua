@@ -1,5 +1,5 @@
 return {
-  "OXY2DEV/markview.nvim",
+  "kylechui/nvim-surround",
   event = "VeryLazy",
   opts = {},
 }

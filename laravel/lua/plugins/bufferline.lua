@@ -1,6 +1,7 @@
 return {
   "akinsho/bufferline.nvim",
-  lazy = false,
+  event = "VeryLazy",
+  keys = { { "<leader>w", "<cmd>BufferLinePickClose<cr>", mode = "n" } },
   config = function()
     require("bufferline").setup({
       options = {

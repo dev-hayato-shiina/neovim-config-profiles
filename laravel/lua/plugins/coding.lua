@@ -1,14 +1,9 @@
 return {
-
-  -- Mason: ツール管理の基盤
   {
     "mason-org/mason.nvim",
     lazy = false,
     opts = {},
   },
-
-  -- Mason <-> nvim-lspconfig のブリッジ
-  -- LSP サーバーを lspconfig に自動接続する
   {
     "mason-org/mason-lspconfig.nvim",
     lazy = false,
@@ -16,38 +11,37 @@ return {
       "mason-org/mason.nvim",
       "neovim/nvim-lspconfig",
     },
-    config = function()
-      require("mason-lspconfig").setup({
-        handlers = {
-          -- デフォルトハンドラ: 全 LSP をデフォルト設定で setup する
-          function(server_name)
-            require("lspconfig")[server_name].setup({})
-          end,
+    opts = {
+      ensure_installed = { "lua_ls" },
+    },
+    config = function(_, opts)
+      require("mason-lspconfig").setup(opts)
 
-          ["intelephense"] = function()
-            require("lspconfig").intelephense.setup({
-              settings = {
-                intelephense = {
-                  telemetry = { enabled = false },
-                  files = {
-                    maxSize = 1000000,
-                    exclude = {
-                      "**/.git/**",
-                      "**/node_modules/**",
-                      "**/vendor/**/{Tests,tests}/**",
-                      "**/vendor/fakerphp/**",
-                    },
-                  },
-                },
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
+
+      vim.lsp.config("lua_ls", { capabilities = capabilities })
+
+      vim.lsp.config("intelephense", {
+        capabilities = capabilities,
+        settings = {
+          intelephense = {
+            telemetry = { enabled = false },
+            files = {
+              maxSize = 1000000,
+              exclude = {
+                "**/.git/**",
+                "**/node_modules/**",
+                "**/vendor/**/{Tests,tests}/**",
+                "**/vendor/fakerphp/**",
               },
-            })
-          end,
+            },
+          },
         },
       })
+
+      vim.lsp.enable({ "lua_ls", "intelephense" })
     end,
   },
-
-  -- Mason でインストールするツールを一元管理する
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     lazy = false,
@@ -70,8 +64,6 @@ return {
       },
     },
   },
-
-  -- Formatter: 保存時に自動整形する
   {
     "stevearc/conform.nvim",
     lazy = false,
@@ -83,12 +75,10 @@ return {
       },
       format_on_save = {
         timeout_ms = 3000,
-        lsp_fallback = true, -- Formatter がない場合は LSP のフォーマットにフォールバックする
+        lsp_fallback = true,
       },
     },
   },
-
-  -- Linter: 保存時・読込時にコード品質をチェックする
   {
     "mfussenegger/nvim-lint",
     lazy = false,
@@ -100,7 +90,6 @@ return {
         php = { "phpstan" },
       }
 
-      -- 保存時・読込時に lint を実行する
       vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {
         callback = function()
           lint.try_lint()
@@ -108,30 +97,22 @@ return {
       })
     end,
   },
-
-  -- スニペットエンジン: 展開・タブ移動・動的プレースホルダーを処理する
   {
     "L3MON4D3/LuaSnip",
     dependencies = {
-      -- VSCode 形式のスニペットデータ集
       "rafamadriz/friendly-snippets",
     },
     config = function()
       require("luasnip.loaders.from_vscode").lazy_load()
     end,
   },
-
-  -- DAP エンジン: DAP プロトコルでデバッガーと通信する
   {
     "mfussenegger/nvim-dap",
     dependencies = {
-      -- Mason と nvim-dap を繋ぐブリッジ
-      -- Mason でインストールしたアダプターを nvim-dap に自動登録する
       {
         "jay-babu/mason-nvim-dap.nvim",
         opts = { handlers = {} },
       },
-      -- DAP の情報をウィンドウとして描画する UI 層
       {
         "rcarriga/nvim-dap-ui",
         dependencies = { "nvim-neotest/nvim-nio" },
@@ -141,7 +122,6 @@ return {
 
           dapui.setup()
 
-          -- デバッグ開始・終了時に UI を自動で開閉する
           dap.listeners.after.event_initialized["dapui_config"] = dapui.open
           dap.listeners.before.event_terminated["dapui_config"] = dapui.close
           dap.listeners.before.event_exited["dapui_config"] = dapui.close
@@ -150,8 +130,6 @@ return {
     },
     config = function()
       local dap = require("dap")
-
-      -- PHP / Xdebug アダプター設定
       dap.adapters.php = {
         type = "executable",
         command = "node",
@@ -168,23 +146,14 @@ return {
       }
     end,
   },
-
-  -- AST ベースのパーサー: シンタックスハイライト・インデントを提供する
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
     opts = {
       ensure_installed = { "lua", "php" },
       highlight = { enable = true },
       indent = { enable = true },
-    },
-  },
-
-  -- Treesitter の AST を利用して関数・クラス・引数単位のテキストオブジェクトを提供する
-  {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    opts = {
       textobjects = {
         select = {
           enable = true,
@@ -199,8 +168,6 @@ return {
       },
     },
   },
-
-  -- 補完UI: LSP・スニペット・パス・バッファ内単語を束ねてポップアップ表示する
   {
     "Saghen/blink.cmp",
     lazy = false,
@@ -232,35 +199,5 @@ return {
         ["<CR>"] = { "accept", "fallback" },
       },
     },
-  },
-
-  -- 括弧・クォートを自動で閉じる
-  {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    opts = {},
-  },
-
-  -- 括弧・クォート・タグを追加・変更・削除する
-  -- cs"' で " を ' に変換 / ds" で削除 / ysiw" で囲む
-  {
-    "kylechui/nvim-surround",
-    event = "VeryLazy",
-    opts = {},
-  },
-
-  -- Treesitter ベースのコメントアウト
-  -- gcc で行コメント / gc でビジュアル選択範囲をコメントアウト
-  {
-    "folke/ts-comments.nvim",
-    event = "VeryLazy",
-    opts = {},
-  },
-
-  -- ファイル検索・grep・バッファ・コマンド履歴などを fzf で検索する
-  {
-    "ibhagwan/fzf-lua",
-    lazy = false,
-    opts = {},
   },
 }
