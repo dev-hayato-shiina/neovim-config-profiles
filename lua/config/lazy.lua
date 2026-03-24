@@ -18,6 +18,11 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 require("lazy").setup({
+  performance = {
+    rtp = {
+      paths = { vim.env.NVIM_TREESITTER_PARSERS }
+    },
+  },
   spec = {
     { import = "plugins" },
   },
